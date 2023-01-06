@@ -5,10 +5,13 @@ COPY requirements.txt .
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \ 
-                       tesseract-ocr && \
+                       tesseract-ocr
+RUN apt-get -y install build-essential libpng-dev zlib1g-dev libjpeg-dev
+RUN apt-get -y install python3-dev python3-setuptools
+
     # Install depencies
-    pip --no-cache install \
-                pillow \
+RUN pip --no-cache install \
+                pillow==7.2.0 \
                 pytesseract && \
     # Instal project requirements
     pip --no-cache install -r requirements.txt && \
